@@ -1,0 +1,27 @@
+{
+  "name": "drop-down-menu-package",
+  "version": "1.0.0",
+  "description": "Basic drop down menu class in javascript",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "watch": "webpack --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NefrodzV/drop-down-menu-package.git"
+  },
+  "author": "nefrodzv",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NefrodzV/drop-down-menu-package/issues"
+  },
+  "homepage": "https://github.com/NefrodzV/drop-down-menu-package#readme",
+  "devDependencies": {
+    "css-loader": "^6.8.1",
+    "style-loader": "^3.3.3",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4"
+  }
+}

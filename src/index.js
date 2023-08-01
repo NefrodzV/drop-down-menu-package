@@ -1,3 +1,8 @@
+import DropDownMenu from "./MenuDropDown";
 const helloWord = "Hello World!";
 
-document.body.append(helloWord);
+const items = ["Home", "News", "Contact", "About"];
+const menu = DropDownMenu(items, (id) => {
+  console.log(id + "clicked");
+});
+document.body.append(menu);
