@@ -1,7 +1,11 @@
 {
   "name": "@nefrodzv23/drop-down-menu-package",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Basic drop down menu class in javascript",
+  "main": "index.js",
+  "files": [
+    "DropDownMenu"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
