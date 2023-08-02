@@ -1,5 +1,6 @@
 import "./style.css";
-export default function DropDownMenu(menuItems, f) {
+export default function DropDownMenu(menuItems, callback) {
+  const items = [];
   const nav = document.createElement("nav");
   const button = document.createElement("button");
   button.classList.add("drop-down-button");
@@ -9,9 +10,9 @@ export default function DropDownMenu(menuItems, f) {
   nav.appendChild(ul);
 
   button.addEventListener("click", () => {
-    button.classList.toggle("active");
-    ul.classList.toggle("visible");
+    buttonFlow();
   });
+
   (() => {
     updateButtonText(menuItems[0]);
     menuItems.forEach((item) => {
@@ -20,22 +21,58 @@ export default function DropDownMenu(menuItems, f) {
   })();
 
   function addItem(text) {
-    const menuItem = MenuItem(text, f);
-    ul.appendChild(menuItem);
+    const menuItem = MenuItem(text);
+    items.push(menuItem);
+    items[0].disable();
+    ul.appendChild(menuItem.li);
   }
 
   function updateButtonText(text) {
     button.textContent = text;
   }
+
+  function buttonFlow() {
+    button.classList.toggle("active");
+    ul.classList.toggle("visible");
+  }
+
+  function resetMenuItem() {
+    for (let index = 0; index < items.length; index++) {
+      const item = items[index];
+      if (item.getText() === button.textContent) {
+        item.show();
+      }
+    }
+  }
+
   function MenuItem(text) {
     const li = document.createElement("li");
     li.classList.add("drop-down-item");
     li.textContent = text;
-    li.addEventListener("click", () => {
-      f(text);
+    li.addEventListener("click", function () {
+      buttonFlow();
+      callback(text);
+      resetMenuItem();
+      updateButtonText(text);
+      disable();
     });
 
-    return li;
+    function disable() {
+      li.style.display = "none";
+    }
+
+    function show() {
+      li.style.display = "block";
+    }
+
+    return {
+      li,
+      getText() {
+        return text;
+      },
+      show,
+      disable,
+    };
   }
 
   return nav;
